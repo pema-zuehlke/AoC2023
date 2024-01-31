@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/output/${fileBasenameNoExtension}",
-            "args": ["dayu1"],
+            "args": ["day1"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
