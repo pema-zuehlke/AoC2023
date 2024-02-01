@@ -1,7 +1,9 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
+#include <regex>
 #include "common.hpp"
 #include "../exercises/day.hpp"
 #include "../exercises/day1.hpp"
@@ -34,7 +36,6 @@ namespace ManageInput
         std::string line;
         while (std::getline(file, line))
         {
-            log(line);
             output.push_back(line);
         }
 
@@ -42,6 +43,44 @@ namespace ManageInput
 
         return true;
     }
+    //TODO: Improve to have a single function 
+    void extractIntegerFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
+    {
+        int inputSize = input.size();
+        for(auto element: input)
+        {
+            std::vector<unsigned int> line;
+
+            std::regex regex(R"(\d+)");   // matches a sequence of digits
+            std::smatch match;
+            while (std::regex_search(element, match, regex)) 
+            {
+                line.push_back(std::stoi(match.str()));
+                element = match.suffix();
+            }
+            output.push_back(line);
+        }
+    }
+
+    void extractDigitFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
+    {
+        int inputSize = input.size();
+        for(auto element: input)
+        {
+            std::vector<unsigned int> line;
+
+            std::regex regex(R"(\d)");   // matches a sequence of digits
+            std::smatch match;
+            while (std::regex_search(element, match, regex)) 
+            {
+                line.push_back(std::stoi(match.str()));
+                element = match.suffix();
+            }
+            output.push_back(line);
+        }
+    }
+
+    
 
     /// @brief Receive the day of the exercise and try to instantiate the correct code to run
     /// @param[in] nameOfDay - String with the name of the day

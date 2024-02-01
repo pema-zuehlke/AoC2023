@@ -18,11 +18,14 @@ void Day1::init()
 /// @return Return an integer with the exercise result
 unsigned int Day1::execute()
 {
-    log("processing inputs");
-    log("input size: "<< input.size());
-    for(auto element: input)
+    unsigned int result = 0;
+    std::vector<std::vector<unsigned int>> output;
+    ManageInput::extractDigitFromString(input, output);
+    
+    for(auto line:output)
     {
-        log(element);
+        result += line[0]*10 + line[line.size()-1];
     }
-    return 0;
+
+    return result;
 }

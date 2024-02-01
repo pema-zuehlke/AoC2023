@@ -26,7 +26,7 @@ extern "C"
         if(exercise == nullptr)
         {
             //day is not implemented
-            log("Day passed as parameter (" << argv[1] << ") still not implemented");
+            log("Day passed as parameter (" << nameOfDay << ") still not implemented");
             return -2;
         }
         exercise->init();
