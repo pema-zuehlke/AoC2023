@@ -1,13 +1,16 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-class ManageInput
+#define log(x)  std::cout << x << std::endl
+
+#include <string>
+#include <vector>
+#include "../exercises/day.hpp"
+
+namespace ManageInput
 {
-    public: 
-        ManageInput();
+    bool openAndProcessFile(const std::string &fileLocation, std::vector<std::string> &input);
 
-    private:
-        bool openFile(const char* fileLocation);
-};
-
+    Day* daySearch(const std::string &nameOfDay);
+}
 #endif
