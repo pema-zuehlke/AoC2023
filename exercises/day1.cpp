@@ -20,7 +20,8 @@ unsigned int Day1::execute()
 {
     unsigned int result = 0;
     std::vector<std::vector<unsigned int>> output;
-    ManageInput::extractDigitFromString(input, output);
+    
+    ProcessInput::extractDigitFromString(input, output);
     
     for(auto line:output)
     {

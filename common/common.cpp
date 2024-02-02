@@ -13,9 +13,10 @@
 #define EXTENSION ".txt" 
 //TODO: move to a different way of not having it hardcoded 
 
+
+
 namespace ManageInput
 {
-    
     /// @brief Open the file INPUT_DIRECTORY + fileName + EXTENSION and extract each line of it, appending it to input vector
     /// @param[in] fileName Name of the file to be opened  
     /// @param[out] output Vector that will have all the lines of the file as a String
@@ -43,44 +44,6 @@ namespace ManageInput
 
         return true;
     }
-    //TODO: Improve to have a single function 
-    void extractIntegerFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
-    {
-        int inputSize = input.size();
-        for(auto element: input)
-        {
-            std::vector<unsigned int> line;
-
-            std::regex regex(R"(\d+)");   // matches a sequence of digits
-            std::smatch match;
-            while (std::regex_search(element, match, regex)) 
-            {
-                line.push_back(std::stoi(match.str()));
-                element = match.suffix();
-            }
-            output.push_back(line);
-        }
-    }
-
-    void extractDigitFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
-    {
-        int inputSize = input.size();
-        for(auto element: input)
-        {
-            std::vector<unsigned int> line;
-
-            std::regex regex(R"(\d)");   // matches a sequence of digits
-            std::smatch match;
-            while (std::regex_search(element, match, regex)) 
-            {
-                line.push_back(std::stoi(match.str()));
-                element = match.suffix();
-            }
-            output.push_back(line);
-        }
-    }
-
-    
 
     /// @brief Receive the day of the exercise and try to instantiate the correct code to run
     /// @param[in] nameOfDay - String with the name of the day
@@ -94,6 +57,54 @@ namespace ManageInput
 
         return nullptr;
     }
-
 } // namespace ManageInput
+
+namespace ProcessInput
+{
+    /// @brief Apply the filter to each individual line and if it discover a match append the result to the vector on that line
+    /// @param input Input vector with all individual strings
+    /// @param output Output 2d array with all the detected results on a specific line 
+    /// @param filter Filter that will be applied to detect the pretended patterns
+    void extractInformationFromString( const std::vector<std::string> &input, 
+                                       std::vector<std::vector<unsigned int>> &output, 
+                                       const std::regex &filter)                                    
+    {
+        for(auto element: input)
+        {
+            std::vector<unsigned int> line;
+            std::smatch match;
+            while (std::regex_search(element, match, filter)) 
+            {
+                line.push_back(std::stoi(match.str()));
+                element = match.suffix();
+            }
+            output.push_back(line);
+        }
+        
+
+    }
+
+    /// @brief Generate a filter to extract single digits from each string on input, and append to output vector
+    /// @param input Input vector with all the individual strings
+    /// @param output 
+    void extractIntegerFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
+    {
+        std::regex filter(R"(\d+)");   // matches a sequence of digits
+        extractInformationFromString(input, output, filter);
+    }
+
+    /// @brief Generate a filter to extract single digits from each string on input, and append to output vector
+    /// @param[in] input Input vector with all the individual strings
+    /// @param[out] output Output vector will be a 2d array containing the individual elements found in the second vector
+    void extractDigitFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
+    {
+        std::regex filter(R"(\d)");   // find single digits
+        extractInformationFromString(input, output, filter);
+    }
+
+} // namespace ProcessInput  
+
+    
+
+
 
