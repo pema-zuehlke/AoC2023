@@ -11,7 +11,14 @@ Day1b::Day1b(const std::string &fileName):
 /// @brief Process the input file and store in the most convenient way to be processed on execute
 void Day1b::init()
 {
-    ManageInput::openAndProcessFile(fileName, input);
+    if(fileName.length() > 0 && input.size() == 0)
+    {
+        ManageInput::openAndProcessFile(fileName, input);
+    } 
+    else 
+    {
+        log("Day1b init: Parameters aren't correct");
+    }
 }
 
 /// @brief Run the day exercise algorithm 
@@ -20,28 +27,28 @@ unsigned int Day1b::execute()
 {
     unsigned int result = 0;
     std::vector<std::vector<ProcessInput::Information<std::string>>> output;
-    std::map<std::string, std::string> table =  {  
-                                                    {"0", "0"},
-                                                    {"zero", "0"},
-                                                    {"1", "1"},
-                                                    {"one", "1"},
-                                                    {"2", "2"},
-                                                    {"two", "2"},
-                                                    {"3", "3"},
-                                                    {"three", "3"},
-                                                    {"4", "4"},
-                                                    {"four", "4"},
-                                                    {"5", "5"},
-                                                    {"five", "5"},
-                                                    {"6", "6"},
-                                                    {"six", "6"},
-                                                    {"7", "7"},
-                                                    {"seven", "7"},
-                                                    {"8", "8"},
-                                                    {"eight", "8"},
-                                                    {"9", "9"},
-                                                    {"nine", "9"}
-                                                };
+    std::map<std::string, std::string> table;
+      
+    table["0"] = "0";
+    table["zero"] = "0";
+    table["1"] = "1";
+    table["one"] = "1";
+    table["2"] = "2";
+    table["two"] = "2";
+    table["3"] = "3";
+    table["three"] = "3";
+    table["4"] = "4";
+    table["four"] = "4";
+    table["5"] = "5";
+    table["five"] = "5";
+    table["6"] = "6";
+    table["six"] = "6";
+    table["7"] = "7";
+    table["seven"] = "7";
+    table["8"] = "8";
+    table["eight"] = "8";
+    table["9"] = "9";
+    table["nine"] = "9";    
 
     ProcessInput::extractInformationFromString( input, 
                                        output, 

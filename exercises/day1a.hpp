@@ -8,7 +8,7 @@
 class Day1a: public Day 
 {
     public: 
-        Day1a(const std::string &fileName);
+        explicit Day1a(const std::string &fileName);
         void init() override;
         unsigned int execute()override;
     
