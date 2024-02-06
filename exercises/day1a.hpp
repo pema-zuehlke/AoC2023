@@ -1,14 +1,14 @@
-#ifndef DAY1_HPP
-#define DAY1_HPP
+#ifndef DAY1A_HPP
+#define DAY1A_HPP
 
 #include <string>
 #include <vector>
 #include "day.hpp"
 
-class Day1: public Day 
+class Day1a: public Day 
 {
     public: 
-        Day1(const std::string &fileName);
+        Day1a(const std::string &fileName);
         void init() override;
         unsigned int execute()override;
     

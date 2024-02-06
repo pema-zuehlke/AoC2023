@@ -15,10 +15,26 @@ namespace ManageInput
 }
 namespace ProcessInput
 {
+    template <typename T>
+    struct Information
+    {
+        unsigned int startPos;
+        unsigned int length;
+        T info;
+    };
+
+    constexpr const char c_extractInteger[] = {R"(\d+)"};
+    constexpr const char c_extractDigit[] = {R"(\d)"};
+    constexpr const char c_extractDigitAndDigitInText[] = {R"([\d]|(zero)|(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine))"};
+
     void extractInformationFromString( const std::vector<std::string> &input, 
-                                       std::vector<std::vector<unsigned int>> &output, 
-                                       const std::regex &filter);
-    void extractIntegerFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output);
-    void extractDigitFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output);
+                                       std::vector<std::vector<Information<std::string> > > &output, 
+                                       const char *);
+
+    void extractInformationFromString( const std::vector<std::string> &input, 
+                                       std::vector<std::vector<Information<std::string> > > &output, 
+                                       const char *filter,
+                                       std::map<std::string, std::string> &conversionTable);
+    
 }
 #endif

@@ -4,16 +4,17 @@
 #include <sstream>
 #include <fstream>
 #include <regex>
+#include <map>
 #include "common.hpp"
 #include "../exercises/day.hpp"
-#include "../exercises/day1.hpp"
+#include "../exercises/day1a.hpp"
+#include "../exercises/day1b.hpp"
+
 
 #define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
 //TODO: move to a different way of not having it hardcoded 
 #define EXTENSION ".txt" 
 //TODO: move to a different way of not having it hardcoded 
-
-
 
 namespace ManageInput
 {
@@ -50,9 +51,23 @@ namespace ManageInput
     /// @return pointer to Day instance, nullptr in case of any error
     Day* daySearch(const std::string &nameOfDay)
     {
-        if(nameOfDay.compare("day1") == 0)
+        std::string fileName = nameOfDay;
+        if(!fileName.empty())
         {
-            return new Day1(nameOfDay);
+            fileName.pop_back();
+        }
+        else 
+        {
+            return nullptr;
+        }
+
+        if(nameOfDay.compare("day1a") == 0)
+        {
+            return new Day1a(fileName);
+        }
+        if(nameOfDay.compare("day1b") == 0)
+        {
+            return new Day1b(fileName);
         }
 
         return nullptr;
@@ -66,40 +81,66 @@ namespace ProcessInput
     /// @param output Output 2d array with all the detected results on a specific line 
     /// @param filter Filter that will be applied to detect the pretended patterns
     void extractInformationFromString( const std::vector<std::string> &input, 
-                                       std::vector<std::vector<unsigned int>> &output, 
-                                       const std::regex &filter)                                    
+                                       std::vector<std::vector<Information<std::string>>> &output, 
+                                       const char *filter)                                    
     {
+        std::map<std::string, std::string> table;
+        
+        extractInformationFromString(input,
+                                    output,
+                                    filter,
+                                    table);    
+    }
+
+    /// @brief Apply the filter to each individual line and if it discover a match verify if there is any conversion table.
+    ///        If table exist process information based on it. Otherwise append the discovered information
+    /// @param input Input vector with all individual strings
+    /// @param output Output 2d array with all the detected results on a specific line 
+    /// @param filter Filter that will be applied in order to detect the desired patterns
+    /// @param conversionTable Table containing the "key", "value" translation. 
+    void extractInformationFromString( const std::vector<std::string> &input, 
+                                       std::vector<std::vector<Information<std::string> > > &output, 
+                                       const char *filter,
+                                       std::map<std::string, std::string> &conversionTable)                                       
+    {
+        std::regex regexFilter(filter);
+
+        const unsigned int conversionTableSize = conversionTable.size();
+
         for(auto element: input)
         {
-            std::vector<unsigned int> line;
+            std::vector<Information<std::string>> line;
             std::smatch match;
-            while (std::regex_search(element, match, filter)) 
+            Information<std::string> info;
+            unsigned int pos = 0;
+            while (std::regex_search(element, match, regexFilter)) 
             {
-                line.push_back(std::stoi(match.str()));
-                element = match.suffix();
+                info.length = match.length();
+                info.startPos = match.position() + pos; 
+
+                if(conversionTableSize && conversionTable.count(match.str()) > 0)
+                {
+                    info.info = conversionTable[match.str()];
+                }
+                else 
+                {
+                    info.info = match.str();
+                }   
+
+                line.push_back(info);
+                if(match.length() > 1)
+                {
+                    element = element.erase(0, match.position() + match.length() - 1);
+                    pos = info.startPos + info.length -1;
+                } 
+                else 
+                {
+                    element = element.erase(0, match.position()+1);
+                    pos = 1 + info.startPos;
+                }                
             }
             output.push_back(line);
-        }
-        
-
-    }
-
-    /// @brief Generate a filter to extract single digits from each string on input, and append to output vector
-    /// @param input Input vector with all the individual strings
-    /// @param output 
-    void extractIntegerFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
-    {
-        std::regex filter(R"(\d+)");   // matches a sequence of digits
-        extractInformationFromString(input, output, filter);
-    }
-
-    /// @brief Generate a filter to extract single digits from each string on input, and append to output vector
-    /// @param[in] input Input vector with all the individual strings
-    /// @param[out] output Output vector will be a 2d array containing the individual elements found in the second vector
-    void extractDigitFromString(const std::vector<std::string> &input, std::vector<std::vector<unsigned int>> &output)
-    {
-        std::regex filter(R"(\d)");   // find single digits
-        extractInformationFromString(input, output, filter);
+        } 
     }
 
 } // namespace ProcessInput  
