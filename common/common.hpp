@@ -1,7 +1,7 @@
 #ifndef COMMON_HPP
 #define COMMON_HPP
 
-#define log(x)  std::cout << x << std::endl
+#define log(x)  (std::cout << x << std::endl)
 
 #include <string>
 #include <vector>
