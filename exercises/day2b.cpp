@@ -20,7 +20,6 @@ void Day2b::init()
 /// @param[in] colour Respective colour 
 void Day2b::validateInput(const unsigned int &value, const std::string &colour)
 {
-    unsigned int maxValue;
     unsigned int* ptr; 
     if(colour == "r")
     {
