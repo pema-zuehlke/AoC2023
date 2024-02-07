@@ -16,8 +16,8 @@ void Day2b::init()
 }
 
 /// @brief Verify if the value for the specific color is bigger than the stored value. If it is, replace it
-/// @param[in] value 
-/// @param[in] color 
+/// @param[in] value New value to be analyzed 
+/// @param[in] colour Respective colour 
 void Day2b::validateInput(const unsigned int &value, const std::string &colour)
 {
     unsigned int maxValue;
@@ -41,6 +41,12 @@ void Day2b::validateInput(const unsigned int &value, const std::string &colour)
     }
 }
 
+/// @brief Add value to the correspondent colour total value 
+/// @param value Value to be added
+/// @param colour Select the desired colour 
+/// @param roundR Total Red
+/// @param roundG Total Green
+/// @param roundB Total Blue
 void Day2b::addValue(unsigned int value, 
                     const std::string &colour, 
                     unsigned int &roundR, 

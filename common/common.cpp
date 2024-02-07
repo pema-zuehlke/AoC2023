@@ -12,9 +12,6 @@
 #include "../exercises/day2a.hpp"
 #include "../exercises/day2b.hpp"
 
-
-
-
 #define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
 //TODO: move to a different way of not having it hardcoded 
 #define EXTENSION ".txt" 
@@ -212,7 +209,6 @@ namespace ProcessInput
             output.push_back(line);
         } 
     }
-
 
 } // namespace ProcessInput  
 
