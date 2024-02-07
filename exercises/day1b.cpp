@@ -32,11 +32,12 @@ unsigned int Day1b::execute()
     table["seven"] = "7";
     table["eight"] = "8";
     table["nine"] = "9";    
-
+     
     ProcessInput::extractInformationFromString( input, 
                                        output, 
                                        ProcessInput::c_extractDigitAndDigitInText,
-                                       table);
+                                       table,
+                                       true);
     
     for(auto line:output)
     {

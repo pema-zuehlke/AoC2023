@@ -35,6 +35,12 @@ namespace ProcessInput
                                        std::vector<std::vector<Information<std::string> > > &output, 
                                        const char *filter,
                                        std::map<std::string, std::string> &conversionTable);
+    void extractInformationFromString( const std::vector<std::string> &input, 
+                                       std::vector<std::vector<Information<std::string> > > &output, 
+                                       const char *filter,
+                                       std::map<std::string, std::string> &conversionTable,
+                                       bool overlapSearch);
+
     
 }
 #endif

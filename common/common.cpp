@@ -9,6 +9,10 @@
 #include "../exercises/day.hpp"
 #include "../exercises/day1a.hpp"
 #include "../exercises/day1b.hpp"
+#include "../exercises/day2a.hpp"
+#include "../exercises/day2b.hpp"
+
+
 
 
 #define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
@@ -69,6 +73,15 @@ namespace ManageInput
         {
             return new Day1b(fileName);
         }
+        if(nameOfDay.compare("day2a") == 0)
+        {
+            return new Day2a(fileName, 12, 13, 14);
+        }
+        if(nameOfDay.compare("day2b") == 0)
+        {
+            return new Day2b(fileName);
+        }
+        
 
         return nullptr;
     }
@@ -94,10 +107,10 @@ namespace ProcessInput
 
     /// @brief Apply the filter to each individual line and if it discover a match verify if there is any conversion table.
     ///        If table exist process information based on it. Otherwise append the discovered information
-    /// @param input Input vector with all individual strings
-    /// @param output Output 2d array with all the detected results on a specific line 
-    /// @param filter Filter that will be applied in order to detect the desired patterns
-    /// @param conversionTable Table containing the "key", "value" translation. 
+    /// @param[in] input Input vector with all individual strings
+    /// @param[out] output Output 2d array with all the detected results on a specific line 
+    /// @param[in] filter Filter that will be applied in order to detect the desired patterns
+    /// @param[in] conversionTable Table containing the "key", "value" translation. 
     void extractInformationFromString( const std::vector<std::string> &input, 
                                        std::vector<std::vector<Information<std::string> > > &output, 
                                        const char *filter,
@@ -125,9 +138,66 @@ namespace ProcessInput
                 else 
                 {
                     info.info = match.str();
+
                 }   
 
                 line.push_back(info);
+                element = match.suffix();  
+                pos += match.position() + info.length;            
+            }
+            output.push_back(line);
+        } 
+    }
+
+
+    /// @brief Apply the filter to each individual line and if it discover a match verify if there is any conversion table.
+    ///        If table exist process information based on it. Otherwise append the discovered information
+    /// @param[in] input Input vector with all individual strings
+    /// @param[out] output Output 2d array with all the detected results on a specific line 
+    /// @param[in] filter Filter that will be applied in order to detect the desired patterns
+    /// @param[in] conversionTable Table containing the "key", "value" translation. 
+    /// @param[in] overlapSearch Verify if items can overlap  
+    void extractInformationFromString( const std::vector<std::string> &input, 
+                                       std::vector<std::vector<Information<std::string> > > &output, 
+                                       const char *filter,
+                                       std::map<std::string, std::string> &conversionTable,
+                                       const bool overlapSearch)
+    {
+        if(!overlapSearch)
+        {
+            extractInformationFromString(input,
+                                    output,
+                                    filter,
+                                    conversionTable); 
+            return; 
+        }
+
+        std::regex regexFilter(filter);
+
+        const unsigned int conversionTableSize = conversionTable.size();
+
+        for(auto element: input)
+        {
+            std::vector<Information<std::string>> line;
+            std::smatch match;
+            Information<std::string> info;
+            unsigned int pos = 0;
+            while (std::regex_search(element, match, regexFilter)) 
+            {
+                info.length = match.length();
+                info.startPos = match.position() + pos; 
+
+                if(conversionTableSize && conversionTable.count(match.str()) > 0)
+                {
+                    info.info = conversionTable[match.str()];
+                }
+                else 
+                {
+                    info.info = match.str();
+                }   
+
+                line.push_back(info);
+
                 if(match.length() > 1)
                 {
                     element = element.erase(0, match.position() + match.length() - 1);
@@ -135,13 +205,14 @@ namespace ProcessInput
                 } 
                 else 
                 {
-                    element = element.erase(0, match.position()+1);
-                    pos = 1 + info.startPos;
+                    element = match.suffix();
+                    pos = info.startPos + 1;
                 }                
             }
             output.push_back(line);
         } 
     }
+
 
 } // namespace ProcessInput  
 
