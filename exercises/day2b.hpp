@@ -23,9 +23,9 @@ class Day2b: public Day
         const std::string fileName;
         std::vector<std::string> input;       
 
-        unsigned int maxR;
-        unsigned int maxG;
-        unsigned int maxB;
+        unsigned int maxR = 0;
+        unsigned int maxG = 0;
+        unsigned int maxB = 0;
 
 };
 

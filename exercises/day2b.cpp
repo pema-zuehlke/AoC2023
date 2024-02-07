@@ -76,8 +76,7 @@ unsigned int Day2b::execute()
     std::map<std::string, std::string> table;
     const char regexExpr[] = {R"((\d+)|(blue)|(red)|(green)|(;))"};
     unsigned int result = 0;
-    static unsigned int prevResult = 0;
-
+    
     table["red"] = "r";
     table["green"] = "g";
     table["blue"] = "b";

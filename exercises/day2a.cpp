@@ -65,12 +65,10 @@ unsigned int Day2a::execute()
                                                 regexExpr,
                                                 table,
                                                 false);
-    
-    unsigned int game = 0;
 
     for(auto line: output)
     {
-        game = std::stoi(line[0].info);
+        unsigned int game = std::stoi(line[0].info);
 
         bool invalid = false; 
         for(unsigned int i = 1; i < line.size()-1; i+=2)
