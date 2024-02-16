@@ -1,0 +1,90 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 0,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "AoC",
+      "displayName": "Default AoC executable",
+      "description": "Default build using Make generator",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/default",
+      "cacheVariables": {
+        "BUILD_CONFIGURATION": "DEFAULT"
+      },
+      "environment": {
+        "MY_ENVIRONMENT_VARIABLE": "Test",
+        "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"
+      }
+    },
+    {
+      "name": "Test",
+      "inherits": "AoC",
+      "displayName": "AoC Unit Tests",
+      "description": "Test build using Make generator",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/tests",
+      "cacheVariables": {
+        "BUILD_CONFIGURATION": "GTEST"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "AoC",
+      "configurePreset": "AoC"
+    },
+    {
+      "name": "AoC New",
+      "configurePreset": "AoC"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "AoC",
+      "configurePreset": "Test",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "AoC",
+      "configurePreset": "AoC",
+      "generators": [
+        "TGZ"
+      ]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "AoC",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "AoC"
+        },
+        {
+          "type": "build",
+          "name": "AoC"
+        },
+        {
+          "type": "test",
+          "name": "AoC"
+        },
+        {
+          "type": "package",
+          "name": "AoC"
+        }
+      ]
+    }
+  ],
+  "vendor": {
+    "example.com/ExampleIDE/1.0": {
+      "autoFormat": false
+    }
+  }
+}
