@@ -33,3 +33,13 @@ unsigned int Day1a::execute()
 
     return result;
 }
+
+const std::vector<std::string>& Day1a::getInput()
+{
+    return input;
+}
+void Day1a::setInput(const std::vector<std::string>& newInput)
+{
+
+
+}

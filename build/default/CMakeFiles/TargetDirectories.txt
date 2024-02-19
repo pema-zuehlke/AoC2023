@@ -1,5 +1,0 @@
-/home/pema/AoC2023/build/default/CMakeFiles/AoC2023.dir
-/home/pema/AoC2023/build/default/CMakeFiles/package.dir
-/home/pema/AoC2023/build/default/CMakeFiles/package_source.dir
-/home/pema/AoC2023/build/default/CMakeFiles/edit_cache.dir
-/home/pema/AoC2023/build/default/CMakeFiles/rebuild_cache.dir

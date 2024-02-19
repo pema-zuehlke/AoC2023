@@ -31,3 +31,7 @@
 *.out
 *.app
 output/
+
+# Compiled code
+build/
+

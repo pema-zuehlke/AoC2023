@@ -8,15 +8,20 @@ constexpr int PARAMETERS_NEEDED = 1;
 
 int main(int argc, char *argv[])
 {   
-    std::string nameOfDay = std::string(argv[1]);
     
+    std::string nameOfDay;
     if(argc != PARAMETERS_NEEDED + 1)
     {
         //do not have the correct parameters
-        log("Wrong number of parameters. expected:" << PARAMETERS_NEEDED << " received:" << (argc-1));
-        return -1; 
+        log("Parameters not properly selected (expected:" << PARAMETERS_NEEDED << " received:" << (argc-1) << ") assume day1a");
+        
+        nameOfDay = "day1a";
     }
-
+    else
+    {
+        nameOfDay = std::string(argv[1]);
+    }
+    
     Day* exercise = ManageInput::daySearch(nameOfDay);
 
     if(exercise == nullptr)
@@ -31,4 +36,3 @@ int main(int argc, char *argv[])
     delete exercise;
     return 0;
 }
-
