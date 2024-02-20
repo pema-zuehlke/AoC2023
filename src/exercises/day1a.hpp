@@ -11,7 +11,8 @@ class Day1a: public Day
         explicit Day1a(const std::string &fileName);
         void init() override;
         unsigned int execute() override;
-    
+
+        //TODO: Add guards to insert this methods only in test environment
         const std::vector<std::string>& getInput();
         void setInput(const std::vector<std::string>& newInput);
 

@@ -25,10 +25,12 @@ unsigned int Day1a::execute()
     ProcessInput::extractInformationFromString(input,
                                                 output,
                                                 ProcessInput::c_extractDigit);
-    
     for(auto line:output)
     {
-        result += (std::stoi(line[0].info))*10 + std::stoi(line[line.size()-1].info);
+        if(line.size())
+        {
+            result += (std::stoi(line[0].info))*10 + std::stoi(line[line.size()-1].info);
+        }
     }
 
     return result;
@@ -40,6 +42,10 @@ const std::vector<std::string>& Day1a::getInput()
 }
 void Day1a::setInput(const std::vector<std::string>& newInput)
 {
+    input.clear();
 
-
+    for(auto line:newInput)
+    {
+        input.push_back(line);    
+    }    
 }

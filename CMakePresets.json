@@ -7,6 +7,7 @@
     },
     "configurePresets": [
       {
+        "hidden": true,
         "name": "default",
         "displayName": "Generate executable",
         "description": "Default using Make",
@@ -30,6 +31,7 @@
         }
       },
       {
+        "hidden": true,
         "name": "ninja-multi",
         "inherits": "default",
         "displayName": "Ninja Multi-Config",
@@ -37,6 +39,7 @@
         "generator": "Ninja Multi-Config"
       },
       {
+        "hidden": true,
         "name": "windows-only",
         "inherits": "default",
         "displayName": "Windows-only configuration",
