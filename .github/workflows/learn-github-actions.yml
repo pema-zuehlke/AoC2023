@@ -16,11 +16,10 @@ jobs:
       - run: pwd
       - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles"
       - run: tree
-      - run: ls /build
-      - run: cmake --build /home/pema/AoC2023/build/tests --target AoC2023_GTest
-      - run: ls /build/default
-      - run: ls /build/tests
+      - run: cd /home/runner/work/AoC2023/AoC2023/build/tests
+      - run: ls 
       - run: pwd
-      - run: (cd build/tests && make)
+      - run: make
       - run: ls
       - run: ./AoC2023_GTest
+      - run: cmake --build /home/pema/AoC2023/build/tests --target AoC2023_GTest
