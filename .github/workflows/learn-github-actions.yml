@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: pwd
+      - uses: lcov-action@v3
       - run: ls
       - run: mkdir build && cd build && mkdir tests && cd tests
       - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles"
