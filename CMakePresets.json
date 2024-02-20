@@ -8,7 +8,7 @@
   "configurePresets": [
     {
       "name": "AoC configure",
-      "displayName": "Default AoC executable",
+      "displayName": "Remote AoC executable",
       "description": "Default build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/default",
@@ -20,7 +20,7 @@
     {
       "name": "Test",
       "inherits": "AoC configure",
-      "displayName": "AoC Unit Tests",
+      "displayName": "Remote AoC Unit Tests",
       "description": "Test build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/tests",

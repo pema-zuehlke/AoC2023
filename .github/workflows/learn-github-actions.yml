@@ -2,22 +2,13 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  check-bats-version:
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
   try-cmake-instal:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - run: ls
-      - run: mkdir build && cd build
-      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles"
+      - run: mkdir build && cd build && mkdir tests && cd tests
+      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S ../.. -B .. -G "Unix Makefiles"
       - run: ls
-      - run: cd tests && make
-      - run: /AoC2023/build/tests/AoC2023_GTest
+      - run: make
+      - run: ./AoC2023_GTest
