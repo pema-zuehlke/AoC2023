@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: danielealbano/lcov-action@v3
+      - run: sudo apt install libgtest-dev
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - run: lcov -v 
       - run: gcov -v
