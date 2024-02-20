@@ -6,8 +6,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - uses: lcov-action@v3
-      - run: ls
+      - uses: danielealbano/lcov-action@v3
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: lcov -v 
+      - run: gcov -v
       - run: mkdir build && cd build && mkdir tests && cd tests
       - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles"
       - run: ls
