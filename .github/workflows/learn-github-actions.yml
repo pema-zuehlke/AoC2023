@@ -6,12 +6,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt install libgtest-dev
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      - run: sudo apt install libgtest-dev lcov
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
       - run: lcov -v 
       - run: gcov -v
       - run: mkdir build && cd build && mkdir tests && cd tests
-      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles"
+      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S ${{ github.repository }}/AoC2023 -B ${{ github.repository }}/AoC2023/build/tests -G "Unix Makefiles"
       - run: ls
       - run: make
       - run: ./AoC2023_GTest
