@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S/AoC2023 -B/AoC2023/build/tests -G "Unix Makefiles"
-      - run: cd build/tests && make
+      - run: ls
+      - run: mkdir build && cd build
+      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles"
+      - run: ls
+      - run: cd tests && make
       - run: /AoC2023/build/tests/AoC2023_GTest
