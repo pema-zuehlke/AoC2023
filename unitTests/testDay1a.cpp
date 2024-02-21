@@ -33,15 +33,9 @@ class Day1Test : public testing::Test
 	Day1a* dayTest;
 };
 
-
 TEST_F(Day1Test, basicTest)
 {   
 	ASSERT_EQ(dayTest->execute(), 142);
-}
-
-TEST_F(Day1Test, failureTest)
-{
-	ASSERT_EQ(1,2);
 }
 
 TEST_F(Day1Test, noValue)
