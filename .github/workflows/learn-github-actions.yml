@@ -10,11 +10,9 @@ jobs:
       - run: mkdir -p build/tests 
       - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -B build/tests -G "Unix Makefiles"
       - run: cmake --build build/tests --target AoC2023_GTest
+      - run: ls build/tests 
       - run: pwd
-      - run: tree
-      - run: cd build/tests 
-      - run: pwd
-      - run: make
-      - run: ./AoC2023_GTest 
-      - run: make gcov
-      - run: make lcov 
+      - run: make -C build/tests
+      - run: .build/tests/AoC2023_GTest 
+      - run: make -C build/tests gcov
+      - run: make -C build/tests lcov 
