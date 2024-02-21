@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt install libgtest-dev lcov tree
-      - run: mkdir build && mkdir build/tests && tree && cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S src/ -B build/tests -G "Unix Makefiles" && cmake --build /build/tests --target AoC2023_GTest && cd build/tests && ls && make && ./AoC2023_GTest
+      - run: mkdir -p build/tests && tree && cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -B build/tests -G "Unix Makefiles" .. && cmake --build /build/tests --target AoC2023_GTest && cd build/tests && ls && make && ./AoC2023_GTest
