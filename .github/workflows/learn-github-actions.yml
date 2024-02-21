@@ -8,4 +8,4 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt install libgtest-dev lcov tree
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
-      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles" && cmake --build /home/runner/work/AoC2023/build/tests --target AoC2023_GTest && cd build/tests && ls && make && ./AoC2023_GTest
+      - run: mkdir build && mkdir build/tests && cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles" && cmake --build /home/runner/work/AoC2023/build/tests --target AoC2023_GTest && cd build/tests && ls && make && ./AoC2023_GTest
