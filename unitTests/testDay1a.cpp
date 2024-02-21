@@ -39,6 +39,11 @@ TEST_F(Day1Test, basicTest)
 	ASSERT_EQ(dayTest->execute(), 142);
 }
 
+TEST_F(Day1Test, failureTest)
+{
+	ASSERT_EQ(1,2);
+}
+
 TEST_F(Day1Test, noValue)
 {   
 	const std::vector<std::string> input = 
