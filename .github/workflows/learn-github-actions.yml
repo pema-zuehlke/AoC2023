@@ -9,4 +9,9 @@ jobs:
       - run: sudo apt install libgtest-dev lcov tree
       - run: mkdir -p build/tests 
       - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -B build/tests -G "Unix Makefiles"
-      - run: cmake --build build/tests --target AoC2023_GTest && cd build/tests && ls && make && ./AoC2023_GTest && make gcov && make lcov 
+      - run: cmake --build build/tests --target AoC2023_GTest
+      - run: cd build/tests 
+      - run: make
+      - run: ./AoC2023_GTest 
+      - run: make gcov
+      - run: make lcov 
