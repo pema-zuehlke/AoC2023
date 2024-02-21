@@ -2,7 +2,7 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  try-cmake-instal:
+  Run_GTests:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -10,17 +10,8 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
       - run: lcov -v 
       - run: gcov -v
-      - run: tree
-      - run: mkdir build && cd build && mkdir tests && cd tests
-      - run: tree
-      - run: pwd
-      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles"
+      - run: cmake -DBUILD_CONFIGURATION=GTEST -DCMAKE_BUILD_TYPE=Debug -S /home/runner/work/AoC2023/AoC2023 -B /home/runner/work/AoC2023/AoC2023/build/tests -G "Unix Makefiles" && cd build/tests && ls && make
       - run: tree
       - run: pwd
-      - run: cd ./build/tests
-      - run: ls 
-      - run: pwd
-      - run: make
-      - run: ls
       - run: ./AoC2023_GTest
       - run: cmake --build /home/pema/AoC2023/build/tests --target AoC2023_GTest
