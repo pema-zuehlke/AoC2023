@@ -13,6 +13,6 @@ jobs:
       - run: ls build/tests 
       - run: pwd
       - run: make -C build/tests
-      - run: .build/tests/AoC2023_GTest 
+      - run: ./build/tests/AoC2023_GTest 
       - run: make -C build/tests gcov
       - run: make -C build/tests lcov 
