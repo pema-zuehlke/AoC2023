@@ -7,8 +7,8 @@
   },
   "configurePresets": [
     {
-      "name": "AoC configure",
-      "displayName": "Remote AoC executable",
+      "name": "Default AoC configure",
+      "displayName": "Default AoC executable",
       "description": "Default build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/default",
@@ -18,9 +18,9 @@
       }
     },
     {
-      "name": "Test",
-      "inherits": "AoC configure",
-      "displayName": "Remote AoC Unit Tests",
+      "name": "Default Test",
+      "inherits": "Default AoC configure",
+      "displayName": "Default AoC Unit Tests",
       "description": "Test build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/tests",
@@ -31,22 +31,22 @@
   ],
   "buildPresets": [
     {
-      "name": "AoC build",
-      "configurePreset": "AoC configure"
+      "name": "Default AoC build",
+      "configurePreset": "Default AoC configure"
     }
   ],
   "testPresets": [
     {
-      "name": "AoC test",
-      "configurePreset": "Test",
+      "name": "Default AoC test",
+      "configurePreset": "Default Test",
       "output": {"outputOnFailure": true},
       "execution": {"noTestsAction": "error", "stopOnFailure": true}
     }
   ],
   "packagePresets": [
     {
-      "name": "AoC package",
-      "configurePreset": "AoC configure",
+      "name": "Default AoC package",
+      "configurePreset": "Default AoC configure",
       "generators": [
         "TGZ"
       ]
@@ -54,25 +54,18 @@
   ],
   "workflowPresets": [
     {
-      "name": "AoC",
+      "name": "Default AoC configure",
       "steps": [
         {
           "type": "configure",
-          "name": "AoC configure"
+          "name": "Default AoC configure"
         },
         {
           "type": "build",
-          "name": "AoC build"
-        },
-        {
-          "type": "test",
-          "name": "AoC test"
-        },
-        {
-          "type": "package",
-          "name": "AoC package"
+          "name": "Default AoC build"
         }
       ]
     }
   ]
+  
 }

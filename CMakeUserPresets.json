@@ -7,9 +7,9 @@
   },
   "configurePresets": [
     {
-      "name": "AoC configure",
-      "displayName": "Default AoC executable",
-      "description": "Default build using Make generator",
+      "name": "Local AoC configure",
+      "displayName": "Local AoC executable",
+      "description": "Local build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/default",
       "cacheVariables": {
@@ -18,9 +18,9 @@
       }
     },
     {
-      "name": "Test",
-      "inherits": "AoC configure",
-      "displayName": "AoC Unit Tests",
+      "name": "Local Test",
+      "inherits": "Local AoC configure",
+      "displayName": "Local AoC Unit Tests",
       "description": "Test build using Make generator",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/build/tests",
@@ -31,22 +31,23 @@
   ],
   "buildPresets": [
     {
-      "name": "AoC build",
-      "configurePreset": "AoC configure"
+      "name": "Local AoC build",
+      "configurePreset": "Local AoC configure"
     }
   ],
   "testPresets": [
     {
-      "name": "AoC test",
-      "configurePreset": "Test",
+      "name": "Local AoC test",
+      "configurePreset": "Local Test",
       "output": {"outputOnFailure": true},
       "execution": {"noTestsAction": "error", "stopOnFailure": true}
     }
+
   ],
   "packagePresets": [
     {
-      "name": "AoC package",
-      "configurePreset": "AoC configure",
+      "name": "Local AoC package",
+      "configurePreset": "Local AoC configure",
       "generators": [
         "TGZ"
       ]
@@ -54,23 +55,15 @@
   ],
   "workflowPresets": [
     {
-      "name": "AoC",
+      "name": "Local AoC configure",
       "steps": [
         {
           "type": "configure",
-          "name": "AoC configure"
+          "name": "Local AoC configure"
         },
         {
           "type": "build",
-          "name": "AoC build"
-        },
-        {
-          "type": "test",
-          "name": "AoC test"
-        },
-        {
-          "type": "package",
-          "name": "AoC package"
+          "name": "Local AoC build"
         }
       ]
     }
