@@ -12,7 +12,8 @@
 #include "../exercises/day2a.hpp"
 #include "../exercises/day2b.hpp"
 
-#define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
+//#define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
+#define INPUT_DIRECTORY "/home/runner/work/AoC2023/AoC2023/input/" 
 //TODO: move to a different way of not having it hardcoded 
 #define EXTENSION ".txt" 
 //TODO: move to a different way of not having it hardcoded 
