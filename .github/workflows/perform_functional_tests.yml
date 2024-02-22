@@ -6,14 +6,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt install tree
       - run: cmake -DBUILD_CONFIGURATION=DEFAULT -DCMAKE_BUILD_TYPE=Debug -B build/default -G "Unix Makefiles" 
       - run: cmake --build build/default --target AoC2023
-      - run: pwd
-      - run: ls 
-      - run: tree
       - run: ./functionalTests/functionalTestsScript.sh
-      - run: tree
+      - run: ls functionalTests
       - uses: actions/upload-artifact@v4
         with:
           name: functionalTests

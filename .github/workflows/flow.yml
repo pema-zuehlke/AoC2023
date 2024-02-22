@@ -8,8 +8,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
     call-workflow1:
-        uses: ./.github/workflows/perform_functional_tests.yml
+        uses: ./.github/workflows/perform_unit_tests.yml
         
     call-workflow2:
         needs: call-workflow1
-        uses: ./.github/workflows/perform_unit_tests.yml
+        uses: ./.github/workflows/perform_functional_tests.yml
