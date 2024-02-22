@@ -1,6 +1,7 @@
 name: perform-functional-tests
 on: [push]
 jobs:
+  needs: Run_GTests  
   Run_functional_tests:
     runs-on: ubuntu-22.04
     steps:
