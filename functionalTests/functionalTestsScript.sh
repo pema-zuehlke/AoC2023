@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exe_path="../build/default/AoC2023 day2b"
+exe_path="build/default/AoC2023 day2b"
 comparison_result_path="functionalTests/expectedResults.txt"
 output_path="output.txt"
 
