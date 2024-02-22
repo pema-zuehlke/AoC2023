@@ -1,7 +1,7 @@
 name: perform-functional-tests
-on: [push]
-jobs:
-  needs: Run_GTests  
+on: 
+    workflow_call:
+jobs: 
   Run_functional_tests:
     runs-on: ubuntu-22.04
     steps:

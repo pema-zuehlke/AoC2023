@@ -1,6 +1,7 @@
 name: perform-unit-tests
-on: [push]
-jobs:
+on: 
+  workflow_call:
+jobs: 
   Run_GTests:
     runs-on: ubuntu-22.04
     steps:
