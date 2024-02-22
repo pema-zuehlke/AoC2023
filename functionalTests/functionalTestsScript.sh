@@ -33,4 +33,10 @@ fi
 
 # test fail
 echo "Test output is not the same"
+echo "======== Comparison result file ========="
+echo $(cat $comparison_result_path)
+echo "============= Output file ==============="
+echo $(cat $output_path)
+echo "========================================="
+
 exit 3

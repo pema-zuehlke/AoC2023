@@ -34,4 +34,5 @@ output/
 
 # Compiled code
 build/
+functionalTests/output.txt
 
