@@ -9,9 +9,9 @@ jobs:
       - run: cmake -DBUILD_CONFIGURATION=DEFAULT -DCMAKE_BUILD_TYPE=Debug -B build/default -G "Unix Makefiles" 
       - run: cmake --build build/default --target AoC2023
       - run: ./functionalTests/functionalTestsScript.sh
+      - run: ls 
       - run: ls functionalTests
       - uses: actions/upload-artifact@v4
         with:
           name: functionalTests
-          path: functionalTests/output.txt
-                functionalTests/expectedResults.txt   
+          path: functionalTests/expectedResults.txt   
