@@ -6,12 +6,7 @@
 #include <regex>
 #include <map>
 #include "common.hpp"
-
-//#define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
-#define INPUT_DIRECTORY "/home/runner/work/AoC2023/AoC2023/input/" 
-//TODO: move to a different way of not having it hardcoded 
-#define EXTENSION ".txt" 
-//TODO: move to a different way of not having it hardcoded 
+#include "config/config.hpp"
 
 namespace ManageInput
 {
@@ -21,7 +16,7 @@ namespace ManageInput
     /// @return True = everything work well, False = Something went wrong
     bool openAndProcessFile(const std::string &fileName, std::vector<std::string> &output)
     {
-        std::string fileNameWithPathAndExtension = std::string(INPUT_DIRECTORY) + fileName + std::string(EXTENSION);
+        std::string fileNameWithPathAndExtension = baseDir + fileName + extension;
         
         std::ifstream file(fileNameWithPathAndExtension);
         //TODO: Verify if the file exist, otherwise create it

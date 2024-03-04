@@ -36,3 +36,4 @@ output/
 build/
 functionalTests/output.txt
 
+config/config.hpp

@@ -1,0 +1,15 @@
+#ifndef CONFIG_HPP_IN
+#define CONFIG_HPP_IN
+
+#include <string>
+
+std::string baseDir("@BASE_DIRECTORY@");
+std::string extension("@EXTENSION@");
+
+/*
+std::string baseDir("/home/pema/AoC2023/input/");
+std::string extension(".txt");
+*/
+
+
+#endif //CONFIG_HPP_IN

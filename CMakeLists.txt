@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-#include(CTest)
-#enable_testing()
+
 
 if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT") 
 #Create binary
@@ -24,6 +23,10 @@ if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT")
                 src/exercises/day2b.cpp)
     
     target_include_directories(${PROJECT_NAME}  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
+    set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/input)
+    set(EXTENSION .txt)
+    configure_file(config/config.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.hpp)
 
 elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
     message("==============================================")
@@ -118,11 +121,11 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
         )
 
 
-
-    message("Finish execution")
-    message("==============================================")
-
 endif()
+
+set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/input/)
+set(EXTENSION .txt)
+configure_file(config/config.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.hpp)
 
 
 
