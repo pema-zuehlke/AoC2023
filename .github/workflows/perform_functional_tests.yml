@@ -10,8 +10,9 @@ jobs:
       - run: cmake --build build/default --target AoC2023
       - run: ./functionalTests/functionalTestsScript.sh
       - run: ls 
+      - run: cp output.txt functionalTests/output.txt
       - run: ls functionalTests
       - uses: actions/upload-artifact@v4
         with:
           name: functionalTests
-          path: functionalTests/expectedResults.txt output.txt
+          path: functionalTests/
