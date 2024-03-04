@@ -14,4 +14,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: functionalTests
-          path: functionalTests/expectedResults.txt   
+          path: functionalTests/expectedResults.txt output.txt
