@@ -24,10 +24,6 @@ if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT")
     
     target_include_directories(${PROJECT_NAME}  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-    set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/input)
-    set(EXTENSION .txt)
-    configure_file(config/config.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.hpp)
-
 elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
     message("==============================================")
     message("Generating configuration to run Tests")
