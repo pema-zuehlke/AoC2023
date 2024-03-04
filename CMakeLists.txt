@@ -9,21 +9,21 @@ if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT")
     message("Generating configuration to generate Executable")
     message("==============================================")
  
-
     set(CPACK_PROJECT_NAME ${PROJECT_NAME})
     set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
     include(CPack)
     
     project(AoC2023 VERSION 0.1.0 LANGUAGES C CXX) 
-    set(CMAKE_CXX_STANDARD 14)
+    set(CMAKE_CXX_STANDARD 17)
 
-    add_executable(AoC2023 src/AoC.cpp 
+    add_executable(${PROJECT_NAME}  src/AoC.cpp 
                 src/common/common.cpp
                 src/exercises/day1a.cpp
                 src/exercises/day1b.cpp
                 src/exercises/day2a.cpp
                 src/exercises/day2b.cpp)
-            
+    
+    target_include_directories(${PROJECT_NAME}  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
     message("==============================================")
@@ -66,6 +66,8 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
                     unitTests/testDay2b.cpp
                 )
     target_link_libraries(${PROJECT_NAME} gtest_main gmock_main)
+
+    target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
     include(GoogleTest)
     gtest_discover_tests(${PROJECT_NAME})

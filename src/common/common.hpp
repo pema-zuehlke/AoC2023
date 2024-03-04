@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <regex>
-#include "../exercises/day.hpp"
+#include "src/exercises/daysIncluded.hpp"
 
 namespace ManageInput
 {

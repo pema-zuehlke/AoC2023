@@ -1,7 +1,7 @@
 
 #include <iostream>
 #include <string>
-#include "../common/common.hpp"
+#include "src/common/common.hpp"
 #include "day2b.hpp"
 
 Day2b::Day2b(const std::string &fileName):

@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "../common/common.hpp"
+#include "src/common/common.hpp"
 #include "day1b.hpp"
 
 Day1b::Day1b(const std::string &fileName):

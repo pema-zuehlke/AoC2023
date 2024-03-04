@@ -6,11 +6,6 @@
 #include <regex>
 #include <map>
 #include "common.hpp"
-#include "../exercises/day.hpp"
-#include "../exercises/day1a.hpp"
-#include "../exercises/day1b.hpp"
-#include "../exercises/day2a.hpp"
-#include "../exercises/day2b.hpp"
 
 //#define INPUT_DIRECTORY "/home/pema/AoC2023/input/" 
 #define INPUT_DIRECTORY "/home/runner/work/AoC2023/AoC2023/input/" 

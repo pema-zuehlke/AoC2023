@@ -1,7 +1,6 @@
 #include <iostream>
 #include <gtest/gtest.h>
-#include "../src/exercises/day1a.hpp"
-#include "../src/exercises/day.hpp"
+#include "src/exercises/daysIncluded.hpp"
 
 class Day1Test : public testing::Test 
 {
