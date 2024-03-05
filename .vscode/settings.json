@@ -1,4 +1,9 @@
 {
+    "cmake.debugConfig": {
+        "args": [
+            "all"
+        ]
+     },
     "files.associations": {
         "ostream": "cpp",
         "any": "cpp",

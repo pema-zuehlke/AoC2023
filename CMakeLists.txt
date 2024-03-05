@@ -59,10 +59,10 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
                     src/exercises/day2a.cpp
                     src/exercises/day2b.cpp
                     src/common/common.cpp
-                    unitTests/testDay1a.cpp
-                    unitTests/testDay1b.cpp
-                    unitTests/testDay2a.cpp
-                    unitTests/testDay2b.cpp
+                    unitTests/exercises/testDay1a.cpp
+                    unitTests/exercises/testDay1b.cpp
+                    unitTests/exercises/testDay2a.cpp
+                    unitTests/exercises/testDay2b.cpp
                 )
     target_link_libraries(${PROJECT_NAME} gtest_main gmock_main)
 
