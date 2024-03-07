@@ -1,7 +1,7 @@
 #ifndef DAYS_INCLUDED_HPP
 #define DAYS_INCLUDED_HPP
 
-#include "day.hpp"
+#include "IDay.hpp"
 #include "day1a.hpp"
 #include "day1b.hpp"
 #include "day2a.hpp"

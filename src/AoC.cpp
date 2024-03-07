@@ -1,7 +1,8 @@
 #include <iostream>
 
-#include "common/common.hpp"
-#include "exercises/day.hpp"
+#include "src/common/common.hpp"
+#include "src/common/ICommon.hpp"
+#include "src/exercises/IDay.hpp"
 
 using namespace std;
 constexpr int PARAMETERS_NEEDED = 1;
@@ -20,9 +21,11 @@ int main(int argc, char *argv[])
     else
     {
         nameOfDay = std::string(argv[1]);
+        //TODO - REMOVE FOLLOWING LINE!! Only for testing
+        nameOfDay = "day1a";
     }
-    
-    Day* exercise = ManageInput::daySearch(nameOfDay);
+    ManageInput manageInput;
+    IDay* exercise = manageInput.daySearch(nameOfDay);
 
     if(exercise == nullptr)
     {

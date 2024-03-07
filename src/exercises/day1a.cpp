@@ -1,8 +1,10 @@
 
 #include <iostream>
 #include <string>
+#include "src/common/ICommon.hpp"
 #include "src/common/common.hpp"
 #include "day1a.hpp"
+#include "config/config.hpp"
 
 Day1a::Day1a(const std::string &fileName):
     fileName{fileName}
@@ -12,7 +14,9 @@ Day1a::Day1a(const std::string &fileName):
 /// @brief Process the input file and store in the most convenient way to be processed on execute
 void Day1a::init()
 {
-    ManageInput::openAndProcessFile(fileName, input);
+    ManageInput manageInput;
+    std::string filePath = getBaseDir() + fileName + getFileExtension();
+    manageInput.openAndProcessFile(filePath, input);
 }
 
 /// @brief Run the day exercise algorithm 

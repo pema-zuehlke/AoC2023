@@ -1,8 +1,10 @@
 
 #include <iostream>
 #include <string>
+#include "src/common/ICommon.hpp"
 #include "src/common/common.hpp"
 #include "day2b.hpp"
+#include "config/config.hpp"
 
 Day2b::Day2b(const std::string &fileName):
     fileName{fileName}
@@ -12,7 +14,8 @@ Day2b::Day2b(const std::string &fileName):
 /// @brief Process the input file and store in the most convenient way to be processed on execute
 void Day2b::init()
 {
-    ManageInput::openAndProcessFile(fileName, input);
+    ManageInput manageInput;
+    manageInput.openAndProcessFile(fileName, input);
 }
 
 /// @brief Verify if the value for the specific color is bigger than the stored value. If it is, replace it

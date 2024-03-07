@@ -6,74 +6,70 @@
 #include <regex>
 #include <map>
 #include "common.hpp"
-#include "config/config.hpp"
+#include "src/common/ICommon.hpp"
 
-namespace ManageInput
-{
-    /// @brief Open the file INPUT_DIRECTORY + fileName + EXTENSION and extract each line of it, appending it to input vector
-    /// @param[in] fileName Name of the file to be opened  
-    /// @param[out] output Vector that will have all the lines of the file as a String
-    /// @return True = everything work well, False = Something went wrong
-    bool openAndProcessFile(const std::string &fileName, std::vector<std::string> &output)
+
+/// @brief Open the file filePath and extract each line of it, appending it to input vector
+/// @param[in] fileName Name of the file to be opened  
+/// @param[out] output Vector that will have all the lines of the file as a String
+/// @return True = everything work well, False = Something went wrong
+bool ManageInput::openAndProcessFile(const std::string &filePath, std::vector<std::string> &output)
+{   
+    std::ifstream file(filePath);
+
+    if(!file.is_open())
     {
-        std::string fileNameWithPathAndExtension = baseDir + fileName + extension;
-        
-        std::ifstream file(fileNameWithPathAndExtension);
-        //TODO: Verify if the file exist, otherwise create it
-
-        if(!file.is_open())
-        {
-            log("unable to open file:" << fileNameWithPathAndExtension);
-            return false;
-        }
-
-        std::string line;
-        while (std::getline(file, line))
-        {
-            output.push_back(line);
-        }
-
-        file.close();
-
-        return true;
+        log("unable to open file:" << filePath);
+        return false;
     }
 
-    /// @brief Receive the day of the exercise and try to instantiate the correct code to run
-    /// @param[in] nameOfDay - String with the name of the day
-    /// @return pointer to Day instance, nullptr in case of any error
-    Day* daySearch(const std::string &nameOfDay)
+    std::string line;
+    while (std::getline(file, line))
     {
-        std::string fileName = nameOfDay;
-        if(!fileName.empty())
-        {
-            fileName.pop_back();
-        }
-        else 
-        {
-            return nullptr;
-        }
+        output.push_back(line);
+    }
 
-        if(nameOfDay.compare("day1a") == 0)
-        {
-            return new Day1a(fileName);
-        }
-        if(nameOfDay.compare("day1b") == 0)
-        {
-            return new Day1b(fileName);
-        }
-        if(nameOfDay.compare("day2a") == 0)
-        {
-            return new Day2a(fileName, 12, 13, 14);
-        }
-        if(nameOfDay.compare("day2b") == 0)
-        {
-            return new Day2b(fileName);
-        }
-        
+    file.close();
 
+    return true;
+
+}
+/// @brief Receive the day of the exercise and try to instantiate the correct code to run
+/// @param[in] nameOfDay - String with the name of the day
+/// @return pointer to Day instance, nullptr in case of any error
+IDay* ManageInput::daySearch(const std::string &nameOfDay)
+{
+    std::string fileName = nameOfDay;
+    if(!fileName.empty())
+    {
+        fileName.pop_back();
+    }
+    else 
+    {
         return nullptr;
     }
-} // namespace ManageInput
+
+    if(nameOfDay.compare("day1a") == 0)
+    {
+        return new Day1a(fileName);
+    }
+    if(nameOfDay.compare("day1b") == 0)
+    {
+        return new Day1b(fileName);
+    }
+    if(nameOfDay.compare("day2a") == 0)
+    {
+        return new Day2a(fileName, 12, 13, 14);
+    }
+    if(nameOfDay.compare("day2b") == 0)
+    {
+        return new Day2b(fileName);
+    }
+    
+
+    return nullptr;
+}
+
 
 namespace ProcessInput
 {

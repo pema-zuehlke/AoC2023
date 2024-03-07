@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "day.hpp"
+#include "IDay.hpp"
 
-class Day1b: public Day 
+class Day1b: public IDay 
 {
     public: 
         explicit Day1b(const std::string &fileName);

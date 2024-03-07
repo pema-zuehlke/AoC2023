@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.22)
 
-
+set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/input/)
+set(EXTENSION .txt)
+set(TEST_BASE_FILE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/unitTests/common/testFiles/)
+configure_file(config/config.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.hpp)
+configure_file(config/config.cpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.cpp)
 
 if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT") 
 #Create binary
@@ -20,7 +24,8 @@ if(${BUILD_CONFIGURATION} STREQUAL "DEFAULT")
                 src/exercises/day1a.cpp
                 src/exercises/day1b.cpp
                 src/exercises/day2a.cpp
-                src/exercises/day2b.cpp)
+                src/exercises/day2b.cpp
+                config/config.cpp)
     
     target_include_directories(${PROJECT_NAME}  PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -59,6 +64,8 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
                     src/exercises/day2a.cpp
                     src/exercises/day2b.cpp
                     src/common/common.cpp
+                    config/config.cpp
+                    unitTests/common/testCommon.cpp
                     unitTests/exercises/testDay1a.cpp
                     unitTests/exercises/testDay1b.cpp
                     unitTests/exercises/testDay2a.cpp
@@ -81,7 +88,7 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
     find_program(LCOV_PATH lcov REQUIRED)
     find_program(GENHTML_PATH genhtml REQUIRED)
 
-    add_custom_target(gcov
+        add_custom_target(gcov
         COMMAND mkdir -p gcoverage
         COMMAND ${CMAKE_MAKE_PROGRAM} ${PROJECT_NAME}
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
@@ -91,9 +98,6 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
         COMMAND echo "=================== GCOV ===================="
         COMMAND echo "${GCOV_PATH} -b ${CMAKE_SOURCE_DIR}/exercises/*.cpp -o ${OBJECT_DIR}/exercises"
         COMMAND echo "${GCOV_PATH} -b ${CMAKE_SOURCE_DIR}/common/*.cpp -o ${OBJECT_DIR}/common"
-
-        #COMMAND ${GCOV_PATH} -b ${CMAKE_SOURCE_DIR}/exercises/*.cpp -o ${OBJECT_DIR}/exercises
-        #COMMAND ${GCOV_PATH} -b ${CMAKE_SOURCE_DIR}/common/*.cpp -o ${OBJECT_DIR}/common
 
         COMMAND echo "-- Coverage files have been output to ${CMAKE_BINARY_DIR}/gcoverage"
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gcoverage
@@ -119,9 +123,7 @@ elseif(${BUILD_CONFIGURATION} STREQUAL "GTEST")
 
 endif()
 
-set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/input/)
-set(EXTENSION .txt)
-configure_file(config/config.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/config/config.hpp)
+
 
 
 

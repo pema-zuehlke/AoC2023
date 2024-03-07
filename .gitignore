@@ -37,3 +37,4 @@ build/
 functionalTests/output.txt
 
 config/config.hpp
+config/config.cpp

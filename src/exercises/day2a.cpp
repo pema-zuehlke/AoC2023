@@ -3,6 +3,7 @@
 #include <string>
 #include "src/common/common.hpp"
 #include "day2a.hpp"
+#include "config/config.hpp"
 
 Day2a::Day2a(const std::string &fileName, unsigned int expectedR, unsigned int expectedG, unsigned int expectedB):
     fileName{fileName},
@@ -15,7 +16,9 @@ Day2a::Day2a(const std::string &fileName, unsigned int expectedR, unsigned int e
 /// @brief Process the input file and store in the most convenient way to be processed on execute
 void Day2a::init()
 {
-    ManageInput::openAndProcessFile(fileName, input);
+    ManageInput manageInput;
+    std::string filePath = getBaseDir() + fileName + getFileExtension();
+    manageInput.openAndProcessFile(filePath, input);
 }
 
 /// @brief Guarantee that the passed value is less than maximum allowed for this color

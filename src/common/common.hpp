@@ -7,12 +7,15 @@
 #include <vector>
 #include <regex>
 #include "src/exercises/daysIncluded.hpp"
+#include "src/common/ICommon.hpp"
 
-namespace ManageInput
+class ManageInput: public IManageInput
 {
-    bool openAndProcessFile(const std::string &fileLocation, std::vector<std::string> &input);
-    Day* daySearch(const std::string &nameOfDay);
-}
+    public: 
+        bool openAndProcessFile(const std::string &filePath, std::vector<std::string> &input) override;
+        IDay* daySearch(const std::string &nameOfDay) override;
+};
+
 namespace ProcessInput
 {
     template <typename T>
