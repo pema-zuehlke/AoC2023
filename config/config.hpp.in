@@ -1,0 +1,11 @@
+#ifndef CONFIG_HPP_IN
+#define CONFIG_HPP_IN
+
+#include <string>
+
+std::string& getBaseDir();
+std::string& getFileExtension();
+std::string& getTestBaseFileDir();
+
+
+#endif //CONFIG_HPP_IN

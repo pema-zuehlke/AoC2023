@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+output/
+
+# Compiled code
+build/
+functionalTests/output.txt
+
+config/config.hpp
+config/config.cpp

@@ -1,0 +1,71 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 0,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "Default AoC configure",
+      "displayName": "Default AoC executable",
+      "description": "Default build using Make generator",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/default",
+      "cacheVariables": {
+        "BUILD_CONFIGURATION": "DEFAULT",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "Default Test",
+      "inherits": "Default AoC configure",
+      "displayName": "Default AoC Unit Tests",
+      "description": "Test build using Make generator",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/tests",
+      "cacheVariables": {
+        "BUILD_CONFIGURATION": "GTEST"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "Default AoC build",
+      "configurePreset": "Default AoC configure"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "Default AoC test",
+      "configurePreset": "Default Test",
+      "output": {"outputOnFailure": true},
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "Default AoC package",
+      "configurePreset": "Default AoC configure",
+      "generators": [
+        "TGZ"
+      ]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "Default AoC configure",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "Default AoC configure"
+        },
+        {
+          "type": "build",
+          "name": "Default AoC build"
+        }
+      ]
+    }
+  ]
+  
+}

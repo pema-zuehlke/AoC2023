@@ -1,0 +1,24 @@
+
+#include <iostream>
+#include <string>
+#include "config.hpp"
+
+static std::string baseDir("@BASE_DIRECTORY@");
+static std::string extension("@EXTENSION@");
+static std::string testBaseFileDir("@TEST_BASE_FILE_DIRECTORY@");
+
+std::string& getBaseDir()
+{
+    return baseDir;
+}
+
+std::string& getFileExtension()
+{
+    return extension;
+}
+
+std::string& getTestBaseFileDir()
+{
+    return testBaseFileDir;
+}
+
